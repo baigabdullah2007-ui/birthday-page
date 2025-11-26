@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Birthday Wish</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(135deg, #ff3ebf, #7a00ff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      overflow: hidden;
+    }
+
+    .glow-text {
+      text-shadow: 0 0 10px #ffb3f9, 0 0 20px #ff66e6, 0 0 40px #ff00c8;
+    }
+
+    .page {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(18px);
+      padding: 40px;
+      border-radius: 25px;
+      width: 90%;
+      max-width: 450px;
+      text-align: center;
+      box-shadow: 0 0 25px rgba(0,0,0,0.3);
+      animation: fadeIn 1s ease-in-out forwards;
+    }
+
+    input, button {
+      width: 100%;
+      padding: 15px;
+      border-radius: 12px;
+      font-size: 18px;
+      border: none;
+    }
+
+    input {
+      margin-top: 15px;
+    }
+
+    button {
+      margin-top: 20px;
+      background: #ff7ae6;
+      color: #3b0066;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #ffc8f7;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .paragraph {
+      font-size: 18px;
+      margin-top: 20px;
+      line-height: 1.8;
+      animation: slideUp 1.2s ease forwards;
+      text-align: left;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.8);} 
+      to { opacity: 1; transform: scale(1);} 
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(40px);} 
+      to { opacity: 1; transform: translateY(0);} 
+    }
+
+    @keyframes sparkle {
+      0% { transform: translateY(-20px) scale(0.5); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateY(100vh) scale(1.2); opacity: 0; }
+    }
+
+    .sparkle {
+      position: fixed;
+      width: 12px;
+      height: 12px;
+      background: white;
+      border-radius: 50%;
+      animation: sparkle 3s linear infinite;
+      filter: drop-shadow(0 0 8px #ff99ff);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page" id="page1">
+    <h2 class="glow-text">Enter Your Name ✨💖</h2>
+    <input type="text" id="username" placeholder="Your Name" />
+    <button onclick="goNext()">Continue 🚀</button>
+  </div>
+
+  <div class="page hidden" id="page2">
+    <h2 class="glow-text">Happy Birthday, <span id="nameDisplay"></span> 🎉🥳</h2>
+    <p class="paragraph">
+      You are someone I can talk to about anything, anytime 💬. You are truly special to me 💖. Even though your life has been filled with trauma and a dark past 🌑, you still try your best to stay happy 🌸. Your kindness, strength, and vibrant personality make everyone around you admire you 🌟. May Allah give you everything you desire and bless you with endless joy 🙏✨. Wishing you a very happy 16th birthday from your brother 🎂🎁. Keep shining and owning your era 👑💅.
+    </p>
+  </div>
+
+  <script>
+    function goNext() {
+      const user = document.getElementById("username").value.trim();
+      if (user === "") {
+        alert("Please enter your name.");
+        return;
+      }
+      document.getElementById("nameDisplay").textContent = user;
+      document.getElementById("page1").classList.add("hidden");
+      document.getElementById("page2").classList.remove("hidden");
+    }
+
+    for (let i = 0; i < 30; i++) {
+      const s = document.createElement("div");
+      s.classList.add("sparkle");
+      s.style.left = Math.random() * 100 + "vw";
+      s.style.animationDuration = (2 + Math.random() * 3) + "s";
+      document.body.appendChild(s);
+    }
+
+    window.onload = () => {
+      document.getElementById("username").value = "Horiya";
+    }
+  </script>
+
+</body>
+</html>
